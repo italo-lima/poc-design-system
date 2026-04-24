@@ -49,6 +49,7 @@ const testProjects =
     : [unitTestProject]
 
 export default defineConfig({
+  base: 'poc-design-system',
   plugins: [
     tailwindcss(),
     react(),
