@@ -12,5 +12,9 @@ const config: StorybookConfig = {
   features: {
     sidebarOnboardingChecklist: false,
   },
+  viteFinal: async (config) => {
+    config.base = '/poc-design-system/'
+    return config
+  },
 }
 export default config
