@@ -18,9 +18,7 @@
     "test": "vitest run -c vite.config.ts",
     "test:watch": "vitest -c vite.config.ts",
     "test:coverage": "vitest run --coverage -c vite.config.ts",
-    "test:install-storybook-browsers": "playwright install chromium chromium-headless-shell",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "test:install-storybook-browsers": "playwright install chromium chromium-headless-shell"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
@@ -60,7 +58,6 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "eslint-plugin-storybook": "^10.3.0",
-    "gh-pages": "^6.3.0",
     "globals": "^17.4.0",
     "jsdom": "^29.0.2",
     "playwright": "^1.58.2",
