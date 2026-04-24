@@ -3,6 +3,7 @@ import type { StorybookConfig } from '@storybook/react-vite'
 const isProd = process.env.NODE_ENV === 'production'
 
 const config: StorybookConfig = {
+  staticDirs: ['../public'],
   stories: ['../src/**/stories/*.story.@(js|jsx|mjs|ts|tsx)', '../documentation/**/*.mdx'],
   addons: [
     '@chromatic-com/storybook',

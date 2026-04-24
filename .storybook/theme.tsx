@@ -1,5 +1,6 @@
-/// <reference types="vite/client" />
 import { create } from 'storybook/theming'
+
+const storybookBase = process.env.NODE_ENV === 'production' ? '/poc-design-system/' : '/'
 
 export const tokens = {
   black: '#000000',
@@ -22,7 +23,7 @@ const fontBase = "'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-seri
 const fontCode = "ui-monospace, 'Cascadia Code', 'Fira Code', Consolas, monospace"
 const radius = 8
 
-export const STORYBOOK_LOGO_PATH = `${import.meta.env.BASE_URL}crmbonus.png`
+export const STORYBOOK_LOGO_PATH = `${storybookBase}crmbonus.png`
 
 const brand = {
   brandTitle: 'CRM&Bonus · Design System',
