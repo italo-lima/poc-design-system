@@ -1,0 +1,108 @@
+---
+description: 'This rule provides standards for frontend components'
+alwaysApply: true
+---
+
+# 🧠 General Rules
+
+- Always use TypeScript
+- Prefer functional components in React
+- Use TailwindCSS for styling
+- Use **`tailwind-variants`** (`import { tv } from 'tailwind-variants'`) when the component has real variant axes (color, size, variant, placement, etc.); use **`cn`** from **`src/utils/cn`** for layout-only class composition and Tailwind conflict merging (re-exports `cn` from `tailwind-variants`, backed by `tailwind-merge`). See **`docs/styling-utilities.md`**
+- Avoid inline styles
+- Prefer composition over complex logic
+- Keep components small, reusable and isolated
+
+---
+
+# 📁 Project Structure
+
+### .storybook
+
+- Contains all Storybook configuration
+- Includes addons, themes and preview setup
+- Do NOT add component logic here
+
+---
+
+### documentation
+
+- Contains layouts used in Storybook Docs
+- Responsible for documentation structure
+- Must be reusable
+- Do NOT include business logic
+
+---
+
+### src/components
+
+- Contains all Design System components
+- Each component MUST follow the structure defined in:
+
+docs/component-structure.md
+
+IMPORTANT:
+
+- Do not create components outside this pattern
+- Always include stories
+- Keep consistency across components
+
+---
+
+### src/styles/global.css
+
+- Global TailwindCSS configuration
+- Responsible for:
+  - resets
+  - design tokens
+  - base styles
+
+Avoid:
+
+- component-specific styles
+- unnecessary overrides
+
+---
+
+# 🧩 Module Structure (Components)
+
+Each component must follow:
+ComponentName/
+├── ComponentName.tsx
+├── stories/
+│ ├── configs/
+│ │ ├── argTypes.ts
+│ │ └── docs-pages.tsx
+│ ├── general.story.tsx
+│ ├── with-background.story.tsx
+│ └── with-border.story.tsx
+
+Rules:
+
+- Keep component logic minimal
+- Stories are mandatory
+- Use configs for reuse
+- Prefer args over hardcoded values
+
+---
+
+# 🎯 Component Rules
+
+- Must be reusable and composable
+- Avoid tight coupling
+- Extract logic into hooks or utils
+- Use clear naming
+- Props must be typed
+
+---
+
+# 🧪 Storybook Rules
+
+- Every component must have stories
+- **One story file per meaningful variation** (e.g. color, size, variant, disabled/read-only): use dedicated `*.story.tsx` files so each axis is visible in the sidebar—not only toggles on `general`
+- Use argTypes for controls
+- Use docs-pages.tsx for layout
+- Avoid duplication (share args via `stories/configs/`)
+- Represent real use cases
+
+---
