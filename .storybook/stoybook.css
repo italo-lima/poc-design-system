@@ -1,0 +1,13 @@
+@reference "../src/styles/global.css";
+
+.sbdocs.sbdocs-wrapper {
+  @apply p-0;
+}
+
+.sbdocs .sbdocs-content {
+  @apply max-w-full;
+}
+
+#storybook-root {
+  @apply h-dvh w-full;
+}
