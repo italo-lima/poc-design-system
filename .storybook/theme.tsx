@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import { create } from 'storybook/theming'
 
 export const tokens = {
@@ -21,7 +22,7 @@ const fontBase = "'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-seri
 const fontCode = "ui-monospace, 'Cascadia Code', 'Fira Code', Consolas, monospace"
 const radius = 8
 
-export const STORYBOOK_LOGO_PATH = '/crmbonus.png'
+export const STORYBOOK_LOGO_PATH = `${import.meta.env.BASE_URL}crmbonus.png`
 
 const brand = {
   brandTitle: 'CRM&Bonus · Design System',

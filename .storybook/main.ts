@@ -1,5 +1,7 @@
 import type { StorybookConfig } from '@storybook/react-vite'
 
+const isProd = process.env.NODE_ENV === 'production'
+
 const config: StorybookConfig = {
   stories: ['../src/**/stories/*.story.@(js|jsx|mjs|ts|tsx)', '../documentation/**/*.mdx'],
   addons: [
@@ -13,7 +15,7 @@ const config: StorybookConfig = {
     sidebarOnboardingChecklist: false,
   },
   viteFinal: async (config) => {
-    config.base = '/poc-design-system/'
+    config.base = isProd ? '/poc-design-system/' : '/'
     return config
   },
 }
