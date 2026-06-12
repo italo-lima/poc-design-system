@@ -12,6 +12,19 @@ dist
 dist-ssr
 *.local
 
+# Stencil
+loader/
+www/
+.stencil/
+.cache
+src/components.d.ts
+src/styles/tailwind.generated.css
+
+# React wrapper (@ds/react) — generated wrappers + tsc output
+react/src/components.ts
+react/src/ds-*.ts
+react/lib/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

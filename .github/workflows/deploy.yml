@@ -29,12 +29,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
         run: npm ci
 
+      # build-storybook runs `prebuild-storybook` first (npm run build = build:css
+      # + stencil build), which generates dist/components consumed by the preview.
       - name: Build Storybook
         run: npm run build-storybook
 
