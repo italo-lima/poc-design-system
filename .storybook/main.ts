@@ -6,7 +6,7 @@ const isProd = process.env.NODE_ENV === 'production'
 const repoRoot = fileURLToPath(new URL('..', import.meta.url))
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.@(ts|tsx)'],
+  stories: ['../src/**/*.stories.@(ts|tsx)', '../documentation/**/*.mdx'],
   addons: ['@storybook/addon-docs', '@storybook/addon-a11y', '@storybook/addon-vitest'],
   framework: {
     name: '@storybook/react-vite',
