@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite'
-import { html } from 'lit'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { DsEmptyState } from '@ds/react'
 import { iconOptions } from '../../utils/icons'
 import type { EmptyStateVariant } from './empty-state'
 
@@ -13,7 +13,7 @@ interface EmptyStateArgs {
 
 const meta: Meta<EmptyStateArgs> = {
   title: 'Components/Empty State',
-  component: 'ds-empty-state',
+  component: DsEmptyState,
   tags: ['autodocs'],
   argTypes: {
     variant: {
@@ -62,18 +62,18 @@ export const GeneralStory: Story = {
     description: 'The quick brown fox jumps over the lazy dog.',
     actionLabel: 'Button',
   },
-  render: (args) => html`
-    <div class="bg-neutral-900 flex items-center justify-center h-full p-40">
-      <ds-empty-state
-        variant=${args.variant}
-        icon=${args.icon}
-        title=${args.title}
-        description=${args.description}
-        action-label=${args.actionLabel}
-        @dsAction=${() => console.log('clicked')}
-      ></ds-empty-state>
+  render: (args) => (
+    <div className="bg-neutral-900 flex items-center justify-center h-full p-40">
+      <DsEmptyState
+        variant={args.variant}
+        icon={args.icon}
+        title={args.title}
+        description={args.description}
+        actionLabel={args.actionLabel}
+        onDsAction={() => console.log('clicked')}
+      ></DsEmptyState>
     </div>
-  `,
+  ),
 }
 
 export const IconStory: Story = {
@@ -88,18 +88,18 @@ export const IconStory: Story = {
   argTypes: {
     variant: { control: false },
   },
-  render: (args) => html`
-    <div class="bg-neutral-900 flex items-center justify-center h-full p-40">
-      <ds-empty-state
-        variant=${args.variant}
-        icon=${args.icon}
-        title=${args.title}
-        description=${args.description}
-        action-label=${args.actionLabel}
-        @dsAction=${() => console.log('clicked')}
-      ></ds-empty-state>
+  render: (args) => (
+    <div className="bg-neutral-900 flex items-center justify-center h-full p-40">
+      <DsEmptyState
+        variant={args.variant}
+        icon={args.icon}
+        title={args.title}
+        description={args.description}
+        actionLabel={args.actionLabel}
+        onDsAction={() => console.log('clicked')}
+      ></DsEmptyState>
     </div>
-  `,
+  ),
 }
 
 export const VariantsStory: Story = {
@@ -112,39 +112,39 @@ export const VariantsStory: Story = {
   argTypes: {
     variant: { control: false },
   },
-  render: (args) => html`
-    <div class="bg-neutral-900 flex items-center justify-center gap-40 flex-wrap p-40">
-      <ds-empty-state
+  render: (args) => (
+    <div className="bg-neutral-900 flex items-center justify-center gap-40 flex-wrap p-40">
+      <DsEmptyState
         variant="icon"
         icon="search"
-        title=${args.title}
-        description=${args.description}
-        action-label=${args.actionLabel}
-      ></ds-empty-state>
-      <ds-empty-state
+        title={args.title}
+        description={args.description}
+        actionLabel={args.actionLabel}
+      ></DsEmptyState>
+      <DsEmptyState
         variant="informative"
-        title=${args.title}
-        description=${args.description}
-        action-label=${args.actionLabel}
-      ></ds-empty-state>
-      <ds-empty-state
+        title={args.title}
+        description={args.description}
+        actionLabel={args.actionLabel}
+      ></DsEmptyState>
+      <DsEmptyState
         variant="warning"
-        title=${args.title}
-        description=${args.description}
-        action-label=${args.actionLabel}
-      ></ds-empty-state>
-      <ds-empty-state
+        title={args.title}
+        description={args.description}
+        actionLabel={args.actionLabel}
+      ></DsEmptyState>
+      <DsEmptyState
         variant="critical"
-        title=${args.title}
-        description=${args.description}
-        action-label=${args.actionLabel}
-      ></ds-empty-state>
-      <ds-empty-state
+        title={args.title}
+        description={args.description}
+        actionLabel={args.actionLabel}
+      ></DsEmptyState>
+      <DsEmptyState
         variant="success"
-        title=${args.title}
-        description=${args.description}
-        action-label=${args.actionLabel}
-      ></ds-empty-state>
+        title={args.title}
+        description={args.description}
+        actionLabel={args.actionLabel}
+      ></DsEmptyState>
     </div>
-  `,
+  ),
 }

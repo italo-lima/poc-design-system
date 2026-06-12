@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/web-components-vite'
+import type { Preview } from '@storybook/react-vite'
 
 // Stencil custom elements: importing the bundle auto-defines all <ds-*> tags
 // (output target dist-custom-elements with customElementsExportBehavior:

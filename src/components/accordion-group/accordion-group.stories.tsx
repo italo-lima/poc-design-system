@@ -1,9 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite'
-import { html } from 'lit'
-
-// Custom elements registrados globalmente em .storybook/preview.ts
-// (import '../dist/components'). Não importar o fonte .tsx aqui — puxaria os
-// decorators do @stencil/core para o bundle do Storybook.
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { DsAccordionGroup, DsAccordion } from '@ds/react'
 
 interface AccordionGroupArgs {
   darkMode: boolean
@@ -15,7 +11,7 @@ const LOREM = 'Lorem ipsum dolor sit amet consectetur. Sit sed dui egestas diam 
 
 const meta: Meta<AccordionGroupArgs> = {
   title: 'Components/AccordionGroup',
-  component: 'ds-accordion-group',
+  component: DsAccordionGroup,
   tags: ['autodocs'],
   argTypes: {
     darkMode: {
@@ -43,21 +39,21 @@ export default meta
 
 type Story = StoryObj<AccordionGroupArgs>
 
-const renderGroup = (args: AccordionGroupArgs) => html`
-  <div class=${`h-full w-full flex ${args.darkMode ? 'bg-black' : 'bg-white'}`}>
-    <div class="w-320 xs:p-8 md:p-16 lg:p-28">
-      <ds-accordion-group
-        ?dark-mode=${args.darkMode}
-        ?has-background=${args.hasBackground}
-        ?has-border=${args.hasBorder}
+const renderGroup = (args: AccordionGroupArgs) => (
+  <div className={`h-full w-full flex ${args.darkMode ? 'bg-black text-white' : 'bg-white text-neutral-900'}`}>
+    <div className="w-320 xs:p-8 md:p-16 lg:p-28">
+      <DsAccordionGroup
+        darkMode={args.darkMode}
+        hasBackground={args.hasBackground}
+        hasBorder={args.hasBorder}
       >
-        <ds-accordion title="Title 1" ?dark-mode=${args.darkMode}>${LOREM}</ds-accordion>
-        <ds-accordion title="Title 2" ?dark-mode=${args.darkMode}>${LOREM}</ds-accordion>
-        <ds-accordion title="Title 3" ?dark-mode=${args.darkMode}>${LOREM}</ds-accordion>
-      </ds-accordion-group>
+        <DsAccordion title="Title 1" darkMode={args.darkMode}>{LOREM}</DsAccordion>
+        <DsAccordion title="Title 2" darkMode={args.darkMode}>{LOREM}</DsAccordion>
+        <DsAccordion title="Title 3" darkMode={args.darkMode}>{LOREM}</DsAccordion>
+      </DsAccordionGroup>
     </div>
   </div>
-`
+)
 
 export const GeneralStory: Story = {
   name: 'General',

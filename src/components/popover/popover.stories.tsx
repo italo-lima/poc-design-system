@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite'
-import { html } from 'lit'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { DsPopover } from '@ds/react'
 import type { PopoverPlacement } from './popover'
 
 interface PopoverArgs {
@@ -11,7 +11,7 @@ interface PopoverArgs {
 
 const meta: Meta<PopoverArgs> = {
   title: 'Components/Popover',
-  component: 'ds-popover',
+  component: DsPopover,
   tags: ['autodocs'],
   argTypes: {
     placement: {
@@ -52,25 +52,25 @@ export const GeneralStory: Story = {
     darkMode: true,
     body: 'Content',
   },
-  render: (args) => html`
-    <div class="bg-neutral-700 h-full w-full">
-      <div class="flex flex-row flex-wrap items-center justify-center gap-x-20 gap-y-32 px-24 py-32">
-        <ds-popover placement="left" title=${args.title} ?dark-mode=${args.darkMode}>
-          ${args.body}
-        </ds-popover>
-        <ds-popover placement="top" title=${args.title} ?dark-mode=${args.darkMode}>
-          ${args.body}
-        </ds-popover>
-        <ds-popover placement="default" title=${args.title} ?dark-mode=${args.darkMode}>
-          ${args.body}
-        </ds-popover>
-        <ds-popover placement="bottom" title=${args.title} ?dark-mode=${args.darkMode}>
-          ${args.body}
-        </ds-popover>
-        <ds-popover placement="right" title=${args.title} ?dark-mode=${args.darkMode}>
-          ${args.body}
-        </ds-popover>
+  render: (args) => (
+    <div className="bg-neutral-700 h-full w-full">
+      <div className="flex flex-row flex-wrap items-center justify-center gap-x-20 gap-y-32 px-24 py-32">
+        <DsPopover placement="left" title={args.title} darkMode={args.darkMode}>
+          {args.body}
+        </DsPopover>
+        <DsPopover placement="top" title={args.title} darkMode={args.darkMode}>
+          {args.body}
+        </DsPopover>
+        <DsPopover placement="default" title={args.title} darkMode={args.darkMode}>
+          {args.body}
+        </DsPopover>
+        <DsPopover placement="bottom" title={args.title} darkMode={args.darkMode}>
+          {args.body}
+        </DsPopover>
+        <DsPopover placement="right" title={args.title} darkMode={args.darkMode}>
+          {args.body}
+        </DsPopover>
       </div>
     </div>
-  `,
+  ),
 }

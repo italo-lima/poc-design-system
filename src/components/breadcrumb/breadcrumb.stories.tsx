@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite'
-import { html } from 'lit'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { DsBreadcrumb } from '@ds/react'
 import type { BreadcrumbItem } from './breadcrumb'
 
 interface BreadcrumbArgs {
@@ -9,7 +9,7 @@ interface BreadcrumbArgs {
 
 const meta: Meta<BreadcrumbArgs> = {
   title: 'Components/Breadcrumb',
-  component: 'ds-breadcrumb',
+  component: DsBreadcrumb,
   tags: ['autodocs'],
   argTypes: {
     items: {
@@ -45,13 +45,15 @@ export const GeneralStory: Story = {
   argTypes: {
     darkMode: { control: false },
   },
-  render: (args) => html`
-    <div class="bg-black h-full w-full">
-      <div class="flex flex-col xs:p-8 md:p-16 lg:p-28 gap-28">
-        <ds-breadcrumb .items=${args.items} .darkMode=${args.darkMode}></ds-breadcrumb>
+  render: (args) => (
+    <div
+      className={`${args.darkMode ? 'bg-black text-white' : 'bg-white text-neutral-900'} h-full w-full`}
+    >
+      <div className="flex flex-col xs:p-8 md:p-16 lg:p-28 gap-28">
+        <DsBreadcrumb items={args.items} darkMode={args.darkMode} />
       </div>
     </div>
-  `,
+  ),
 }
 
 export const CollapsedStory: Story = {
@@ -64,45 +66,44 @@ export const CollapsedStory: Story = {
     darkMode: { control: false },
     items: { control: false },
   },
-  render: (args) => html`
-    <div class="bg-neutral-900 h-full w-full">
-      <div class="flex flex-col xs:p-8 md:p-16 lg:p-28 gap-28">
-        <ds-breadcrumb
-          .darkMode=${args.darkMode}
-          .items=${[{ label: '1st Link (active)' }]}
-        ></ds-breadcrumb>
-        <ds-breadcrumb
-          .darkMode=${args.darkMode}
-          .items=${[{ label: '1st Link', href: '#' }, { label: '2nd link (active)' }]}
-        ></ds-breadcrumb>
-        <ds-breadcrumb
-          .darkMode=${args.darkMode}
-          .items=${[
+  render: (args) => (
+    <div
+      className={`${args.darkMode ? 'bg-neutral-900 text-white' : 'bg-white text-neutral-900'} h-full w-full`}
+    >
+      <div className="flex flex-col xs:p-8 md:p-16 lg:p-28 gap-28">
+        <DsBreadcrumb darkMode={args.darkMode} items={[{ label: '1st Link (active)' }]} />
+        <DsBreadcrumb
+          darkMode={args.darkMode}
+          items={[{ label: '1st Link', href: '#' }, { label: '2nd link (active)' }]}
+        />
+        <DsBreadcrumb
+          darkMode={args.darkMode}
+          items={[
             { label: '1st Link', href: '#' },
             { label: '2nd link', href: '#' },
             { label: '3rd link (active)' },
           ]}
-        ></ds-breadcrumb>
-        <ds-breadcrumb
-          .darkMode=${args.darkMode}
-          .items=${[
+        />
+        <DsBreadcrumb
+          darkMode={args.darkMode}
+          items={[
             { label: '1st Link', href: '#' },
             { label: '2nd link', href: '#' },
             { label: '3rd link', href: '#' },
             { label: '4th link (active)' },
           ]}
-        ></ds-breadcrumb>
-        <ds-breadcrumb
-          .darkMode=${args.darkMode}
-          .items=${[
+        />
+        <DsBreadcrumb
+          darkMode={args.darkMode}
+          items={[
             { label: '1st Link', href: '#' },
             { label: '2nd link', href: '#' },
             { label: '3rd link', href: '#' },
             { label: '4th link', href: '#' },
             { label: '5th link (active)' },
           ]}
-        ></ds-breadcrumb>
+        />
       </div>
     </div>
-  `,
+  ),
 }

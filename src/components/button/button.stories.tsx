@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite'
-import { html } from 'lit'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { DsButton } from '@ds/react'
 import { iconOptions } from '../../utils/icons'
 import type { ButtonVariant, ButtonColor, ButtonSize } from './button'
 import type { IconName } from '../../utils/icons'
@@ -18,7 +18,7 @@ interface ButtonArgs {
 
 const meta: Meta<ButtonArgs> = {
   title: 'Components/Button',
-  component: 'ds-button',
+  component: DsButton,
   tags: ['autodocs'],
   argTypes: {
     label: {
@@ -87,22 +87,23 @@ export default meta
 
 type Story = StoryObj<ButtonArgs>
 
-const renderButton = (args: ButtonArgs) => html`
-  <div class="bg-neutral-900 min-h-full w-full p-28 flex">
-    <ds-button
-      variant=${args.variant}
-      color=${args.color}
-      size=${args.size}
-      ?full-width=${args.fullWidth}
-      leading-icon=${args.leadingIcon ?? ''}
-      trailing-icon=${args.trailingIcon ?? ''}
-      ?icon-only=${args.iconOnly}
-      ?disabled=${args.disabled}
-      @dsClick=${() => console.log('clicked')}
-      >${args.label}</ds-button
+const renderButton = (args: ButtonArgs) => (
+  <div className="bg-neutral-900 min-h-full w-full p-28 flex">
+    <DsButton
+      variant={args.variant}
+      color={args.color}
+      size={args.size}
+      fullWidth={args.fullWidth}
+      leadingIcon={args.leadingIcon}
+      trailingIcon={args.trailingIcon}
+      iconOnly={args.iconOnly}
+      disabled={args.disabled}
+      onDsClick={() => console.log('clicked')}
     >
+      {args.label}
+    </DsButton>
   </div>
-`
+)
 
 export const GeneralStory: Story = {
   name: 'General',

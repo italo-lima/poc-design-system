@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite'
-import { html } from 'lit'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { DsBadge } from '@ds/react'
 import type { BadgeVariant } from './badge'
 
 interface BadgeArgs {
@@ -9,7 +9,7 @@ interface BadgeArgs {
 
 const meta: Meta<BadgeArgs> = {
   title: 'Components/Badge',
-  component: 'ds-badge',
+  component: DsBadge,
   tags: ['autodocs'],
   argTypes: {
     variant: {
@@ -38,11 +38,11 @@ export const GeneralStory: Story = {
     variant: 'primary',
     count: 1000,
   },
-  render: (args) => html`
-    <div class="bg-neutral-900 h-full w-full p-28 flex flex-col gap-16">
-      <div class="flex items-center gap-16">
-        <ds-badge variant=${args.variant} count=${args.count}></ds-badge>
+  render: (args) => (
+    <div className="bg-neutral-900 h-full w-full p-28 flex flex-col gap-16">
+      <div className="flex items-center gap-16">
+        <DsBadge variant={args.variant} count={args.count} />
       </div>
     </div>
-  `,
+  ),
 }

@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite'
-import { html } from 'lit'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { DsTag } from '@ds/react'
 import { iconOptions } from '../../utils/icons'
 import type { TagVariant, TagSurface, TagSize, TagFormat } from './tag'
 
@@ -17,7 +17,7 @@ interface TagArgs {
 
 const meta: Meta<TagArgs> = {
   title: 'Components/Tag',
-  component: 'ds-tag',
+  component: DsTag,
   tags: ['autodocs'],
   argTypes: {
     darkMode: {
@@ -109,20 +109,20 @@ export const GeneralStory: Story = {
     leadingIcon: 'user',
     trailingIcon: 'x',
   },
-  render: (args) => html`
-    <div class="h-full w-full bg-neutral-900 p-24">
-      <ds-tag
-        variant=${args.variant}
-        surface=${args.surface}
-        size=${args.size}
-        format=${args.format}
-        text=${args.text}
-        leading-icon=${args.leadingIcon}
-        trailing-icon=${args.trailingIcon}
-        ?interactive-trailing=${args.interactiveTrailing}
-      ></ds-tag>
+  render: (args) => (
+    <div className="h-full w-full bg-neutral-900 p-24">
+      <DsTag
+        variant={args.variant}
+        surface={args.surface}
+        size={args.size}
+        format={args.format}
+        text={args.text}
+        leadingIcon={args.leadingIcon}
+        trailingIcon={args.trailingIcon}
+        interactiveTrailing={args.interactiveTrailing}
+      />
     </div>
-  `,
+  ),
 }
 
 export const ClickStory: Story = {
@@ -136,93 +136,94 @@ export const ClickStory: Story = {
     leadingIcon: 'user',
     trailingIcon: 'x',
   },
-  render: (args) => html`
-    <div class="min-h-svh w-full bg-neutral-900 p-24">
-      <div class="flex items-center gap-16">
-        <ds-tag
-          variant=${args.variant}
-          surface=${args.surface}
-          size=${args.size}
-          format=${args.format}
-          text=${args.text}
-          leading-icon=${args.leadingIcon}
-          trailing-icon=${args.trailingIcon}
-          interactive-trailing
-          @dsTrailingClick=${(e: Event) => {
+  render: (args) => (
+    <div className="min-h-svh w-full bg-neutral-900 p-24">
+      <div className="flex items-center gap-16">
+        <DsTag
+          variant={args.variant}
+          surface={args.surface}
+          size={args.size}
+          format={args.format}
+          text={args.text}
+          leadingIcon={args.leadingIcon}
+          trailingIcon={args.trailingIcon}
+          interactiveTrailing
+          onDsTrailingClick={(e) => {
             const note = (e.target as HTMLElement)?.parentElement?.querySelector('[data-clicked]')
             if (note) note.removeAttribute('hidden')
           }}
-        ></ds-tag>
-        <p data-clicked hidden class="text-white text-2xl">Tag foi clicado</p>
+        />
+        <p data-clicked hidden className="text-white text-2xl">
+          Tag foi clicado
+        </p>
       </div>
     </div>
-  `,
+  ),
 }
 
-const grid = (surface: TagSurface, size: TagSize, format: TagFormat, text: string) => html`
-  <div class="flex gap-8 mt-8">
-    ${variants.map(
-      (variant) => html`
-        <ds-tag
-          variant=${variant}
-          surface=${surface}
-          size=${size}
-          format=${format}
-          text=${text}
-          leading-icon="user"
-          trailing-icon="x"
-        ></ds-tag>
-      `,
-    )}
+const grid = (surface: TagSurface, size: TagSize, format: TagFormat, text: string) => (
+  <div className="flex gap-8 mt-8">
+    {variants.map((variant) => (
+      <DsTag
+        key={variant}
+        variant={variant}
+        surface={surface}
+        size={size}
+        format={format}
+        text={text}
+        leadingIcon="user"
+        trailingIcon="x"
+      />
+    ))}
   </div>
-`
+)
 
 export const SquareStory: Story = {
   name: 'Square',
   args: { text: 'Tag', leadingIcon: 'user', trailingIcon: 'x' },
-  render: (args) => html`
-    <div class="min-h-svh w-full bg-neutral-900 p-24">
-      <div class="flex flex-col">
-        <h1 class="text-xl-medium text-neutral-300">Medium Size (Solid)</h1>
-        ${grid('solid', 'medium', 'squared', args.text)}
+  render: (args) => (
+    <div className="min-h-svh w-full bg-neutral-900 p-24">
+      <div className="flex flex-col">
+        <h1 className="text-xl-medium text-neutral-300">Medium Size (Solid)</h1>
+        {grid('solid', 'medium', 'squared', args.text)}
       </div>
-      <div class="flex flex-col mt-32">
-        <h1 class="text-xl-medium text-neutral-300">Medium Size (Outline)</h1>
-        ${grid('outline', 'medium', 'squared', args.text)}
+      <div className="flex flex-col mt-32">
+        <h1 className="text-xl-medium text-neutral-300">Medium Size (Outline)</h1>
+        {grid('outline', 'medium', 'squared', args.text)}
       </div>
-      <div class="flex flex-col mt-32">
-        <h1 class="text-xl-medium text-neutral-300">Small Size (Solid)</h1>
-        ${grid('solid', 'small', 'squared', args.text)}
+      <div className="flex flex-col mt-32">
+        <h1 className="text-xl-medium text-neutral-300">Small Size (Solid)</h1>
+        {grid('solid', 'small', 'squared', args.text)}
       </div>
-      <div class="flex flex-col mt-32">
-        <h1 class="text-xl-medium text-neutral-300">Small Size (Outline)</h1>
-        ${grid('outline', 'small', 'squared', args.text)}
+      <div className="flex flex-col mt-32">
+        <h1 className="text-xl-medium text-neutral-300">Small Size (Outline)</h1>
+        {grid('outline', 'small', 'squared', args.text)}
       </div>
     </div>
-  `,
+  ),
 }
 
 export const PillStory: Story = {
   name: 'Pill',
   args: { text: 'Tag', leadingIcon: 'user', trailingIcon: 'x' },
-  render: (args) => html`
-    <div class="min-h-svh w-full bg-neutral-900 p-24">
-      <div class="flex flex-col">
-        <h1 class="text-xl-medium text-neutral-300">Medium Size (Solid)</h1>
-        ${grid('solid', 'medium', 'pill', args.text)}
+  render: (args) => (
+    <div className="min-h-svh w-full bg-neutral-900 p-24">
+      <div className="flex flex-col">
+        <h1 className="text-xl-medium text-neutral-300">Medium Size (Solid)</h1>
+        {grid('solid', 'medium', 'pill', args.text)}
       </div>
-      <div class="flex flex-col mt-32">
-        <h1 class="text-xl-medium text-neutral-300">Medium Size (Outline)</h1>
-        ${grid('outline', 'medium', 'pill', args.text)}
+      <div className="flex flex-col mt-32">
+        <h1 className="text-xl-medium text-neutral-300">Medium Size (Outline)</h1>
+        {grid('outline', 'medium', 'pill', args.text)}
       </div>
-      <div class="flex flex-col mt-32">
-        <h1 class="text-xl-medium text-neutral-300">Small Size (Solid)</h1>
-        ${grid('solid', 'small', 'pill', args.text)}
+      <div className="flex flex-col mt-32">
+        <h1 className="text-xl-medium text-neutral-300">Small Size (Solid)</h1>
+        {grid('solid', 'small', 'pill', args.text)}
       </div>
-      <div class="flex flex-col mt-32">
-        <h1 class="text-xl-medium text-neutral-300">Small Size (Outline)</h1>
-        ${grid('outline', 'small', 'pill', args.text)}
+      <div className="flex flex-col mt-32">
+        <h1 className="text-xl-medium text-neutral-300">Small Size (Outline)</h1>
+        {grid('outline', 'small', 'pill', args.text)}
       </div>
     </div>
-  `,
+  ),
 }

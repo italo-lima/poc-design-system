@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite'
-import { html } from 'lit'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { DsTooltip } from '@ds/react'
 import type { TooltipPlacement } from './tooltip'
 
 interface TooltipArgs {
@@ -10,7 +10,7 @@ interface TooltipArgs {
 
 const meta: Meta<TooltipArgs> = {
   title: 'Components/Tooltip',
-  component: 'ds-tooltip',
+  component: DsTooltip,
   tags: ['autodocs'],
   argTypes: {
     placement: {
@@ -45,15 +45,25 @@ export const GeneralStory: Story = {
     darkMode: true,
     content: 'Texto de ajuda curto para o usuário.',
   },
-  render: (args) => html`
-    <div class="bg-neutral-700 h-full w-full">
-      <div class="flex flex-row flex-wrap items-center justify-center gap-x-20 gap-y-32 px-24 py-32">
-        <ds-tooltip placement="left" ?dark-mode=${args.darkMode}>${args.content}</ds-tooltip>
-        <ds-tooltip placement="top" ?dark-mode=${args.darkMode}>${args.content}</ds-tooltip>
-        <ds-tooltip placement="default" ?dark-mode=${args.darkMode}>${args.content}</ds-tooltip>
-        <ds-tooltip placement="bottom" ?dark-mode=${args.darkMode}>${args.content}</ds-tooltip>
-        <ds-tooltip placement="right" ?dark-mode=${args.darkMode}>${args.content}</ds-tooltip>
+  render: (args) => (
+    <div className="bg-neutral-700 h-full w-full">
+      <div className="flex flex-row flex-wrap items-center justify-center gap-x-20 gap-y-32 px-24 py-32">
+        <DsTooltip placement="left" darkMode={args.darkMode}>
+          {args.content}
+        </DsTooltip>
+        <DsTooltip placement="top" darkMode={args.darkMode}>
+          {args.content}
+        </DsTooltip>
+        <DsTooltip placement="default" darkMode={args.darkMode}>
+          {args.content}
+        </DsTooltip>
+        <DsTooltip placement="bottom" darkMode={args.darkMode}>
+          {args.content}
+        </DsTooltip>
+        <DsTooltip placement="right" darkMode={args.darkMode}>
+          {args.content}
+        </DsTooltip>
       </div>
     </div>
-  `,
+  ),
 }

@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite'
-import { html } from 'lit'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { DsAvatar } from '@ds/react'
 import { iconOptions } from '../../utils/icons'
 import type { AvatarType, AvatarIconName } from './avatar'
 
@@ -15,7 +15,7 @@ interface AvatarArgs {
 
 const meta: Meta<AvatarArgs> = {
   title: 'Components/Avatar',
-  component: 'ds-avatar',
+  component: DsAvatar,
   tags: ['autodocs'],
   argTypes: {
     type: {
@@ -76,21 +76,21 @@ export const GeneralStory: Story = {
     darkMode: true,
     rounded: true,
   },
-  render: (args) => html`
-    <div class="bg-neutral-900 h-full w-full">
-      <div class="flex flex-row flex-wrap xs:p-8 md:p-16 lg:p-28 gap-16">
-        <ds-avatar
-          type=${args.type}
-          icon=${args.icon}
-          alt=${args.alt ?? ''}
-          src=${args.src ?? ''}
-          initials=${args.initials ?? ''}
-          ?rounded=${args.rounded}
-          ?dark-mode=${args.darkMode}
-        ></ds-avatar>
+  render: (args) => (
+    <div className={`${args.darkMode ? 'bg-neutral-900 text-white' : 'bg-white text-neutral-900'} h-full w-full`}>
+      <div className="flex flex-row flex-wrap xs:p-8 md:p-16 lg:p-28 gap-16">
+        <DsAvatar
+          type={args.type}
+          icon={args.icon}
+          alt={args.alt ?? ''}
+          src={args.src ?? ''}
+          initials={args.initials ?? ''}
+          rounded={args.rounded}
+          darkMode={args.darkMode}
+        />
       </div>
     </div>
-  `,
+  ),
 }
 
 export const ImageStory: Story = {
@@ -101,14 +101,14 @@ export const ImageStory: Story = {
     src: '/avatar.png',
     darkMode: true,
   },
-  render: (args) => html`
-    <div class="bg-neutral-900 h-full w-full">
-      <div class="flex flex-row xs:p-8 md:p-16 lg:p-28 gap-16">
-        <ds-avatar type="image" alt=${args.alt ?? ''} src=${args.src ?? ''} ?rounded=${true}></ds-avatar>
-        <ds-avatar type="image" alt=${args.alt ?? ''} src=${args.src ?? ''} ?rounded=${false}></ds-avatar>
+  render: (args) => (
+    <div className={`${args.darkMode ? 'bg-neutral-900 text-white' : 'bg-white text-neutral-900'} h-full w-full`}>
+      <div className="flex flex-row xs:p-8 md:p-16 lg:p-28 gap-16">
+        <DsAvatar type="image" alt={args.alt ?? ''} src={args.src ?? ''} rounded={true} />
+        <DsAvatar type="image" alt={args.alt ?? ''} src={args.src ?? ''} rounded={false} />
       </div>
     </div>
-  `,
+  ),
 }
 
 export const InitialsStory: Story = {
@@ -119,24 +119,24 @@ export const InitialsStory: Story = {
     alt: 'John Doe',
     darkMode: true,
   },
-  render: (args) => html`
-    <div class="bg-neutral-900 h-full w-full">
-      <div class="flex flex-row xs:p-8 md:p-16 lg:p-28 gap-16">
-        <ds-avatar
+  render: (args) => (
+    <div className={`${args.darkMode ? 'bg-neutral-900 text-white' : 'bg-white text-neutral-900'} h-full w-full`}>
+      <div className="flex flex-row xs:p-8 md:p-16 lg:p-28 gap-16">
+        <DsAvatar
           type="initials"
-          initials=${args.initials ?? ''}
-          alt=${args.alt ?? ''}
-          ?rounded=${true}
-        ></ds-avatar>
-        <ds-avatar
+          initials={args.initials ?? ''}
+          alt={args.alt ?? ''}
+          rounded={true}
+        />
+        <DsAvatar
           type="initials"
-          initials=${args.initials ?? ''}
-          alt=${args.alt ?? ''}
-          ?rounded=${false}
-        ></ds-avatar>
+          initials={args.initials ?? ''}
+          alt={args.alt ?? ''}
+          rounded={false}
+        />
       </div>
     </div>
-  `,
+  ),
 }
 
 export const IconsStory: Story = {
@@ -146,12 +146,12 @@ export const IconsStory: Story = {
     icon: 'user-round',
     darkMode: true,
   },
-  render: (args) => html`
-    <div class="bg-neutral-900 h-full w-full">
-      <div class="flex flex-row flex-wrap xs:p-8 md:p-16 lg:p-28 gap-16">
-        <ds-avatar type="icon" icon=${args.icon} ?rounded=${true}></ds-avatar>
-        <ds-avatar type="icon" icon=${args.icon} ?rounded=${false}></ds-avatar>
+  render: (args) => (
+    <div className={`${args.darkMode ? 'bg-neutral-900 text-white' : 'bg-white text-neutral-900'} h-full w-full`}>
+      <div className="flex flex-row flex-wrap xs:p-8 md:p-16 lg:p-28 gap-16">
+        <DsAvatar type="icon" icon={args.icon} rounded={true} />
+        <DsAvatar type="icon" icon={args.icon} rounded={false} />
       </div>
     </div>
-  `,
+  ),
 }

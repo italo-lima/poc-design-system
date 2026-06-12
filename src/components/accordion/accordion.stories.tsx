@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite'
-import { html } from 'lit'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { DsAccordion } from '@ds/react'
 import type { AccordionAlignment } from './accordion'
 
 interface AccordionArgs {
@@ -16,7 +16,7 @@ const LOREM = 'Lorem ipsum dolor sit amet consectetur. Sit sed dui egestas diam 
 
 const meta: Meta<AccordionArgs> = {
   title: 'Components/Accordion',
-  component: 'ds-accordion',
+  component: DsAccordion,
   tags: ['autodocs'],
   argTypes: {
     title: {
@@ -67,22 +67,22 @@ export default meta
 
 type Story = StoryObj<AccordionArgs>
 
-const renderAccordion = (args: AccordionArgs) => html`
-  <div class="bg-black h-full w-full">
-    <div class="w-280 flex flex-col xs:p-8 md:p-16 lg:p-28 gap-4">
-      <ds-accordion
-        title=${args.title}
-        alignment=${args.alignment}
-        ?disabled=${args.disabled}
-        ?default-open=${args.defaultOpen}
-        ?read-only=${args.readOnly}
-        ?dark-mode=${args.darkMode}
+const renderAccordion = (args: AccordionArgs) => (
+  <div className={`${args.darkMode ? 'bg-black text-white' : 'bg-white text-neutral-900'} h-full w-full`}>
+    <div className="w-280 flex flex-col xs:p-8 md:p-16 lg:p-28 gap-4">
+      <DsAccordion
+        title={args.title}
+        alignment={args.alignment}
+        disabled={args.disabled}
+        defaultOpen={args.defaultOpen}
+        readOnly={args.readOnly}
+        darkMode={args.darkMode}
       >
-        ${args.content}
-      </ds-accordion>
+        {args.content}
+      </DsAccordion>
     </div>
   </div>
-`
+)
 
 export const GeneralStory: Story = {
   name: 'General',

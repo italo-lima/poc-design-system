@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/web-components-vite'
-import { html } from 'lit'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { DsAlert } from '@ds/react'
 import type { AlertVariant, AlertCloseType } from './alert'
 
 interface AlertArgs {
@@ -13,7 +13,7 @@ interface AlertArgs {
 
 const meta: Meta<AlertArgs> = {
   title: 'Components/Alert',
-  component: 'ds-alert',
+  component: DsAlert,
   tags: ['autodocs'],
   argTypes: {
     variant: {
@@ -66,18 +66,18 @@ export const GeneralStory: Story = {
     subtitle: 'Lorem ipsum dolor sit amet consectetur',
     darkMode: true,
   },
-  render: (args) => html`
-    <div class="bg-black h-full w-full">
-      <div class="flex flex-col xs:p-8 md:p-16 lg:p-28 gap-4">
-        <ds-alert
-          variant=${args.variant}
-          title=${args.title}
-          subtitle=${args.subtitle}
-          close-type=${args.closeType}
-        ></ds-alert>
+  render: (args) => (
+    <div className={`${args.darkMode ? 'bg-black text-white' : 'bg-white text-neutral-900'} h-full w-full`}>
+      <div className="flex flex-col xs:p-8 md:p-16 lg:p-28 gap-4">
+        <DsAlert
+          variant={args.variant}
+          title={args.title}
+          subtitle={args.subtitle}
+          closeType={args.closeType}
+        />
       </div>
     </div>
-  `,
+  ),
 }
 
 export const IconStory: Story = {
@@ -88,16 +88,16 @@ export const IconStory: Story = {
     darkMode: true,
     closeType: 'icon',
   },
-  render: (args) => html`
-    <div class="bg-black h-full w-full">
-      <div class="flex flex-col xs:p-8 md:p-16 lg:p-28 gap-16">
-        <ds-alert variant="default" title=${args.title} subtitle=${args.subtitle} close-type="icon"></ds-alert>
-        <ds-alert variant="danger" title=${args.title} subtitle=${args.subtitle} close-type="icon"></ds-alert>
-        <ds-alert variant="info" title=${args.title} subtitle=${args.subtitle} close-type="icon"></ds-alert>
-        <ds-alert variant="success" title=${args.title} subtitle=${args.subtitle} close-type="icon"></ds-alert>
+  render: (args) => (
+    <div className={`${args.darkMode ? 'bg-black text-white' : 'bg-white text-neutral-900'} h-full w-full`}>
+      <div className="flex flex-col xs:p-8 md:p-16 lg:p-28 gap-16">
+        <DsAlert variant="default" title={args.title} subtitle={args.subtitle} closeType="icon" />
+        <DsAlert variant="danger" title={args.title} subtitle={args.subtitle} closeType="icon" />
+        <DsAlert variant="info" title={args.title} subtitle={args.subtitle} closeType="icon" />
+        <DsAlert variant="success" title={args.title} subtitle={args.subtitle} closeType="icon" />
       </div>
     </div>
-  `,
+  ),
 }
 
 export const ButtonStory: Story = {
@@ -108,14 +108,14 @@ export const ButtonStory: Story = {
     darkMode: true,
     closeType: 'button',
   },
-  render: (args) => html`
-    <div class="bg-black h-full w-full">
-      <div class="flex flex-col xs:p-8 md:p-16 lg:p-28 gap-16">
-        <ds-alert variant="default" title=${args.title} subtitle=${args.subtitle} close-type="button"></ds-alert>
-        <ds-alert variant="danger" title=${args.title} subtitle=${args.subtitle} close-type="button"></ds-alert>
-        <ds-alert variant="info" title=${args.title} subtitle=${args.subtitle} close-type="button"></ds-alert>
-        <ds-alert variant="success" title=${args.title} subtitle=${args.subtitle} close-type="button"></ds-alert>
+  render: (args) => (
+    <div className={`${args.darkMode ? 'bg-black text-white' : 'bg-white text-neutral-900'} h-full w-full`}>
+      <div className="flex flex-col xs:p-8 md:p-16 lg:p-28 gap-16">
+        <DsAlert variant="default" title={args.title} subtitle={args.subtitle} closeType="button" />
+        <DsAlert variant="danger" title={args.title} subtitle={args.subtitle} closeType="button" />
+        <DsAlert variant="info" title={args.title} subtitle={args.subtitle} closeType="button" />
+        <DsAlert variant="success" title={args.title} subtitle={args.subtitle} closeType="button" />
       </div>
     </div>
-  `,
+  ),
 }
