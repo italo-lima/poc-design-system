@@ -44,6 +44,19 @@ const config: StorybookConfig = {
       jsx: 'automatic',
       jsxImportSource: 'react',
     }
+    // Pre-bundle the React JSX runtime up front. Stories use the automatic
+    // runtime, so without this Vite discovers `react/jsx-dev-runtime` lazily
+    // and reloads mid-run — which breaks @storybook/addon-vitest browser tests
+    // with "Failed to fetch dynamically imported module".
+    config.optimizeDeps ??= {}
+    config.optimizeDeps.include = [
+      ...(config.optimizeDeps.include || []),
+      'react',
+      'react-dom',
+      'react-dom/client',
+      'react/jsx-runtime',
+      'react/jsx-dev-runtime',
+    ]
     return config
   },
 }
