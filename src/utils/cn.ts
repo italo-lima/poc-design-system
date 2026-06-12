@@ -1,6 +1,6 @@
 /**
- * Combines class names (including conditional objects) and merges conflicting Tailwind utilities.
- * Re-exported from tailwind-variants (uses tailwind-merge internally).
- * Prefer `tv` from `tailwind-variants` when the component has structured variant axes (color, size, surface, etc.).
+ * Combina class names (incluindo objetos condicionais) e resolve utilities Tailwind
+ * conflitantes. Reexportado de tailwind-variants (usa tailwind-merge internamente).
+ * Prefira `tv` quando o componente tiver eixos de variante (color, size, shape, etc.).
  */
 export { cn } from 'tailwind-variants'

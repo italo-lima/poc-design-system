@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DS — Playground</title>
+    <script type="module" src="/build/dscore.esm.js"></script>
+    <script nomodule src="/build/dscore.js"></script>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding: 40px;
+        background: #22272b;
+        font-family: system-ui, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <ds-badge></ds-badge>
+    <ds-badge count="3"></ds-badge>
+    <ds-badge count="42" variant="success"></ds-badge>
+    <ds-badge count="1000" variant="danger"></ds-badge>
+    <ds-badge variant="info"></ds-badge>
+  </body>
+</html>

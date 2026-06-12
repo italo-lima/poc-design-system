@@ -1,0 +1,36 @@
+/*
+ * Regras ::slotted para o ds-accordion-group (shadow DOM).
+ *
+ * No componente React original, quando hasBorder era true, aplicava-se ao
+ * container:
+ *   [&>*:last-child]:border-b-transparent
+ *   [&>*:last-child_button]:border-b-transparent
+ * ou seja: o ÚLTIMO ds-accordion do grupo (e o <button> dentro dele) perdiam a
+ * borda inferior, evitando uma linha dupla junto à borda do container.
+ *
+ * Em shadow DOM os ds-accordion são projetados via <slot/> e permanecem no
+ * light DOM, então utilities Tailwind `[&>*]` (resolvidas a partir do shadow
+ * root) não os atingem. Usamos ::slotted() para alcançar o filho top-level.
+ *
+ * ::slotted(ds-accordion:last-child) -> equivale a [&>*:last-child].
+ * O ds-accordion expõe seu wrapper com `border-b`; aqui zeramos a cor da borda
+ * do próprio elemento custom quando o grupo tem borda.
+ */
+:host([has-border]) ::slotted(ds-accordion:last-child) {
+  border-bottom-color: transparent;
+}
+
+/*
+ * LIMITAÇÃO conhecida (parte `_button`):
+ * `[&>*:last-child_button]:border-b-transparent` precisava atingir o <button>
+ * QUE FICA DENTRO do shadow root do ds-accordion. ::slotted() só estiliza o
+ * elemento slotted top-level (o próprio <ds-accordion>), e NUNCA os nós dentro
+ * do shadow DOM dele. Portanto essa regra não é replicável a partir do grupo.
+ *
+ * Para resolver de fato a borda do button do último item seria necessário:
+ *   a) o ds-accordion expor uma CSS Custom Property / ::part(button), ou
+ *   b) o ds-accordion tratar "último do grupo" internamente.
+ * Como nenhuma dessas existe hoje, deixamos a regra do button como limitação
+ * documentada. O efeito visual é mínimo (a borda do container já cobre o caso
+ * comum); se necessário, evoluir o ds-accordion com `::part(button)`.
+ */
