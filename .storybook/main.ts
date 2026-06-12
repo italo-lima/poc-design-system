@@ -7,7 +7,12 @@ const repoRoot = fileURLToPath(new URL('..', import.meta.url))
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(ts|tsx)', '../documentation/**/*.mdx'],
-  addons: ['@storybook/addon-docs', '@storybook/addon-a11y', '@storybook/addon-vitest'],
+  addons: [
+    '@storybook/addon-docs',
+    '@storybook/addon-a11y',
+    '@storybook/addon-vitest',
+    '@storybook/addon-mcp'
+  ],
   framework: {
     name: '@storybook/react-vite',
     options: {},
