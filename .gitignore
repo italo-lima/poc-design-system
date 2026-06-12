@@ -16,6 +16,7 @@ dist-ssr
 loader/
 www/
 .stencil/
+.cache
 src/components.d.ts
 src/styles/tailwind.generated.css
 
