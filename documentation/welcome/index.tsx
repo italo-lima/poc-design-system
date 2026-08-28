@@ -1,41 +1,66 @@
 import React from 'react'
 import { DocumentationLayout } from '../layout'
 
+const stack = [
+  'React 19',
+  'TypeScript',
+  'Tailwind CSS v4',
+  'tailwind-variants',
+  'Storybook 10',
+  'Vitest',
+]
+
 const B = ({ children }: { children: React.ReactNode }) => (
-  <strong className="text-m-bold text-neutral-800">{children}</strong>
+  <strong className="text-neutral-900">{children}</strong>
 )
 
 const WelcomeContent = () => (
-  <div className="grid grid-cols-12 gap-32 container mx-auto text-neutral-700">
-    <p className="col-span-8 col-end-9 text-2xl-regular">Bem-vindo ao </p>
-    <h1 className="col-span-8 col-end-9 text-3xl-bold text-black">CRM&Bonus Design System</h1>
-    <div className="col-span-8 col-end-9 flex max-w-2xl flex-col gap-32 text-m-regular text-neutral-600">
+  <div className="mx-auto flex max-w-2xl flex-col gap-48">
+    <header className="flex flex-col gap-16">
+      <span className="text-s-semibold uppercase tracking-widest text-brand-600">
+        Design System
+      </span>
+      <h1 className="text-3xl-bold text-neutral-900">CRM&amp;Bonus Design System</h1>
+      <p className="text-l-regular text-neutral-500">
+        Uma base visual e técnica compartilhada para os produtos da CRM&amp;Bonus.
+      </p>
+    </header>
+
+    <div className="flex flex-col gap-24 text-m-regular leading-relaxed text-neutral-600">
       <p>
-        A CRM&Bonus atua com múltiplos produtos voltados para o mercado de benefícios e gestão de
-        pessoas. Com o crescimento do time e o aumento da superfície de produto, ficou claro que
+        A CRM&amp;Bonus atua com múltiplos produtos voltados para o mercado de benefícios e gestão
+        de pessoas. Com o crescimento do time e o aumento da superfície de produto, ficou claro que
         cada squad tomava decisões visuais de forma independente — gerando interfaces inconsistentes
         e retrabalho constante entre design e desenvolvimento.
       </p>
       <p>
-        A decisão de construir um design system próprio veio da necessidade de ter uma{' '}
-        <B>base técnica compartilhada</B> que refletisse a identidade visual da empresa e permitisse
-        que novos produtos e funcionalidades fossem entregues com mais velocidade e menos fricção
-        entre as disciplinas.
-      </p>
-      <p>
-        É construído sobre <B>React 19</B> e <B>TypeScript</B>, estilizado com{' '}
-        <B>Tailwind CSS v4</B> usando tokens CSS nativos, com{' '}
-        <B>tailwind-variants</B> e <B>tailwind-merge</B> (via helper <B>cn</B> em <B>src/utils/cn</B>)
-        para variantes e merge de classes, empacotado com <B>Vite 8</B> e documentado no{' '}
-        <B>Storybook 10</B>. Os testes rodam via <B>Vitest</B>.
+        Este design system nasceu dessa necessidade: uma <B>base técnica compartilhada</B> que
+        reflete a identidade visual da empresa e permite que novos produtos e funcionalidades sejam
+        entregues com mais velocidade e menos fricção entre as disciplinas.
       </p>
     </div>
 
-    <div className="col-span-8 col-end-9 gap-1 border-t border-neutral-100 pt-8 md:flex-row md:items-center md:justify-between">
-      <span className="text-s-regular text-neutral-300">
-        Mantido pelo time de produto · CRM&Bonus
+    <div className="flex flex-col gap-12">
+      <span className="text-s-semibold uppercase tracking-widest text-neutral-300">
+        Construído com
       </span>
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap gap-8">
+        {stack.map((item) => (
+          <span
+            key={item}
+            className="rounded-full border border-neutral-100 bg-neutral-50 px-12 py-6 text-s-medium text-neutral-700"
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <div className="flex flex-col gap-8 border-t border-neutral-100 pt-24 md:flex-row md:items-center md:justify-between">
+      <span className="text-s-regular text-neutral-300">
+        Mantido pelo time de produto · CRM&amp;Bonus
+      </span>
+      <div className="flex items-center gap-8">
         <span className="text-s-regular text-neutral-300">v0.1.0</span>
         <span className="h-1 w-1 rounded-full bg-neutral-200" />
         <span className="text-s-regular text-neutral-300">Em desenvolvimento</span>

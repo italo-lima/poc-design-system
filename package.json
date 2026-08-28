@@ -1,13 +1,55 @@
 {
+  "name": "@crmbonus/design-system",
+  "version": "0.1.0",
+  "description": "Design system oficial da CRM&Bonus — componentes React acessíveis, estilizados com Tailwind CSS v4.",
+  "keywords": [
+    "design-system",
+    "react",
+    "components",
+    "ui",
+    "tailwindcss",
+    "crmbonus"
+  ],
   "homepage": "https://italo-lima.github.io/poc-design-system/",
-  "name": "design-system",
-  "private": true,
-  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/italo-lima/poc-design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/italo-lima/poc-design-system/issues"
+  },
+  "license": "UNLICENSED",
+  "author": "CRM&Bonus",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles": "./dist/style.css",
+    "./tokens": "./dist/tokens.css",
+    "./package.json": "./package.json"
+  },
   "scripts": {
-    "postinstall": "playwright install chromium chromium-headless-shell",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run build:lib && npm run build:css && npm run build:tokens && npm run build:fonts",
+    "build:lib": "vite build --config vite.lib.config.ts",
+    "build:css": "tailwindcss -i ./src/styles/global.css -o ./dist/style.css --minify",
+    "build:tokens": "node -e \"require('node:fs').copyFileSync('src/styles/tokens.css','dist/tokens.css')\"",
+    "build:fonts": "node -e \"require('node:fs').cpSync('node_modules/@fontsource-variable/inter/files','dist/files',{recursive:true})\"",
+    "build:app": "tsc -b && vite build",
+    "prepublishOnly": "npm run build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"documentation/**/*.{ts,tsx,css}\"",
@@ -20,27 +62,26 @@
     "test:coverage": "vitest run --coverage -c vite.config.ts",
     "test:install-storybook-browsers": "playwright install chromium chromium-headless-shell"
   },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
   "dependencies": {
-    "@fontsource-variable/inter": "^5.2.8",
-    "@tailwindcss/vite": "^4.2.2",
-    "lucide-react": "^1.7.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "storybook": "^10.3.0",
     "tailwind-merge": "^3.5.0",
-    "tailwind-variants": "^3.2.2",
-    "tailwindcss": "^4.2.2",
-    "ts-dedent": "^2.2.0"
+    "tailwind-variants": "^3.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
     "@chromatic-com/storybook": "^5.0.1",
     "@eslint/js": "^9.39.4",
+    "@fontsource-variable/inter": "^5.2.8",
     "@rolldown/plugin-babel": "^0.2.0",
     "@storybook/addon-a11y": "^10.3.0",
     "@storybook/addon-docs": "^10.3.0",
     "@storybook/addon-vitest": "^10.3.0",
     "@storybook/react-vite": "^10.3.0",
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/vite": "^4.2.2",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
@@ -60,11 +101,18 @@
     "eslint-plugin-storybook": "^10.3.0",
     "globals": "^17.4.0",
     "jsdom": "^29.0.2",
+    "lucide-react": "^1.7.0",
     "playwright": "^1.58.2",
     "prettier": "^3.8.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "storybook": "^10.3.0",
+    "tailwindcss": "^4.2.2",
+    "ts-dedent": "^2.2.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.56.1",
     "vite": "^8.0.0",
+    "vite-plugin-dts": "^5.0.3",
     "vitest": "^4.1.0"
   }
 }

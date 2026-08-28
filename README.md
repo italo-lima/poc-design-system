@@ -1,75 +1,85 @@
-# React + TypeScript + Vite
+# CRM&Bonus Design System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Componentes React do design system oficial da CRM&Bonus — estilizados com Tailwind CSS v4, documentados no Storybook e prontos para uso em outros produtos da empresa.
 
-Currently, two official plugins are available:
+**[Ver componentes no Storybook →](https://italo-lima.github.io/poc-design-system/)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+> ⚠️ O pacote ainda não foi publicado no npm — publicação prevista em breve. As instruções abaixo já refletem o fluxo definitivo de uso assim que ele estiver disponível.
 
-## React Compiler
+## Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+React 19 · TypeScript · Tailwind CSS v4 · [tailwind-variants](https://www.tailwind-variants.org/) · Vite · Storybook 10 · Vitest
 
-Note: This will impact Vite dev & build performances.
+## Instalação
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install @crmbonus/design-system
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Importe o CSS do design system uma única vez no ponto de entrada da sua aplicação (ele já inclui a fonte Inter, os tokens de cor/tipografia e o reset base):
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```ts
+// src/main.tsx
+import '@crmbonus/design-system/styles'
 ```
+
+Se o seu projeto já usa Tailwind CSS v4, você pode importar apenas os tokens e deixar seu próprio build gerar as classes utilitárias:
+
+```css
+/* src/styles/global.css */
+@import 'tailwindcss';
+@import '@crmbonus/design-system/tokens';
+```
+
+## Uso
+
+```tsx
+import { Button, Badge } from '@crmbonus/design-system'
+
+export function Example() {
+  return (
+    <div>
+      <Badge variant="primary">Novo</Badge>
+      <Button variant="solid" color="primary">
+        Confirmar
+      </Button>
+    </div>
+  )
+}
+```
+
+Guia completo de instalação e configuração: [Documentation/Installation Guide](https://italo-lima.github.io/poc-design-system/) no Storybook.
+
+## Componentes disponíveis
+
+Accordion · AccordionGroup · Alert · Avatar · AvatarGroup · Badge · Breadcrumb · Button · EmptyState · Popover · Tag · Tooltip
+
+Cada componente tem sua documentação (props, variações e exemplos) no Storybook.
+
+## Requisitos
+
+| Dependência     | Versão                                       |
+| --------------- | --------------------------------------------- |
+| React            | 19 ou superior                                |
+| TypeScript       | Recomendado, não obrigatório                  |
+| Tailwind CSS v4  | Apenas se quiser usar os tokens utilitários   |
+
+## Desenvolvimento
+
+```bash
+npm install        # instala as dependências
+npm run dev        # sandbox local (Vite)
+npm run storybook  # Storybook em http://localhost:6006
+npm test           # testes unitários (Vitest)
+npm run lint       # lint (ESLint + Prettier)
+npm run build      # gera a lib publicável em dist/ (JS, types, CSS e tokens)
+```
+
+Convenções do projeto:
+
+- [`docs/component-structure.md`](docs/component-structure.md) — estrutura de pastas e stories de cada componente.
+- [`docs/styling-utilities.md`](docs/styling-utilities.md) — quando usar `tailwind-variants` (`tv`) vs. `cn`.
+
+## Licença
+
+UNLICENSED — uso interno CRM&Bonus. Veja [LICENSE](LICENSE).
